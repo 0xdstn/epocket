@@ -16,8 +16,11 @@ for e in unreadFeed.entries:
     indexHtml += '<li><a href="'+guid+'.html">'+e.title+'</a></li>'
 
     article = Article(e.link)
-    article.download()
-    article.parse()
+    try:
+        article.download()
+        article.parse()
+    except BaseException:
+        continue;
 
     articleHtml += '<h1>'+e.title+'</h1>'
     articleHtml += '<p><strong>Source: ' + e.link + '</strong></p><p>'
